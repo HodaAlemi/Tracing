@@ -7,7 +7,7 @@ This project has the implementation of tracing for a Rest API which is built on 
 
 ## Tracer
 A Tracer is the actual implementation that will record the Spans and publish them somewhere. 
-In this project I have used [Jaeger](https://www.jaegertracing.io/docs/1.16/getting-started/) client library.
+In this project [Jaeger](https://www.jaegertracing.io/docs/1.16/getting-started/) client library has been used.
 
 
 ## Jaeger
@@ -29,6 +29,6 @@ Jaeger GUI on localhost http://localhost:16686
  
 ## Inspired by 
 
-Akka HTTP tracing: [AkkaHttp](https://gist.github.com/chadselph/65f21fc86f873d6569f4cfe4f96ce036)
+Akka HTTP trace directive was inspired from [AkkaHttp](https://gist.github.com/chadselph/65f21fc86f873d6569f4cfe4f96ce036)
 
 
