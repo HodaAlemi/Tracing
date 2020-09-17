@@ -1,0 +1,14 @@
+!.gitignore
+
+# Scala specific
+*.log
+*.class
+
+# SBT specific
+target/
+.history
+.sbtopts
+
+.idea/*
+
+
