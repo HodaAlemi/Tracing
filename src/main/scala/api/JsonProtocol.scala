@@ -10,5 +10,5 @@ trait JsonProtocol extends SprayJsonSupport {
     implicit val itemJsonFormat = jsonFormat4(Item)
     implicit val orderJsonFormat = jsonFormat4(Order)
     implicit val ordersJsonFormat = jsonFormat1(Orders)
-    implicit val actionExecutedJsonFormat = jsonFormat1(ActionExecuted)
+    implicit val actionExecutedJsonFormat = jsonFormat2(ActionExecuted)
   }

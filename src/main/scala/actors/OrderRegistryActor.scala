@@ -4,7 +4,7 @@ import tracing.CustomeTracing.buildChildSpan
 import tracing.TraceContext
 import akka.actor.{Actor, ActorLogging, Props}
 import io.opentracing.{Span, Tracer}
-//import java.time.LocalDate
+
 
 object OrderRegistryActor {
 
@@ -16,7 +16,7 @@ object OrderRegistryActor {
 
   case class GetOrders(traceContext: TraceContext)
 
-  case class ActionExecuted(description: String)
+  case class ActionExecuted(id: Option[Int], description: String)
 
   case class Order(id: Int, items: Seq[Item], totalPrice: Double, date: String)
 
@@ -43,7 +43,7 @@ class OrderRegistryActor extends Actor with ActorLogging {
     case SubmitOrder(order, traceContext) =>
       val orderSubmissionSpan = buildChildSpan(traceContext, "submittingOrder", traceContext.span)
       orders += order
-      sender() ! ActionExecuted(s"OrderID ${order.id} submitted.")
+      sender() ! ActionExecuted(Some(order.id), s"OrderID ${order.id} submitted.")
       val actionExecutionSpan = buildChildSpan(traceContext, "executingAction", orderSubmissionSpan)
       actionExecutionSpan.finish()
       orderSubmissionSpan.finish()
@@ -60,9 +60,9 @@ class OrderRegistryActor extends Actor with ActorLogging {
         case Some(order) =>
           val actionExecutionSpan = buildChildSpan(traceContext, "executingAction", span)
           orders -= order
-          sender() ! ActionExecuted(s"OrderID ${order.id} is cancelled.")
+          sender() ! ActionExecuted(Some(order.id), s"OrderID ${order.id} is cancelled.")
           actionExecutionSpan.finish()
-        case _ => sender() ! ActionExecuted(s"OrderID not found.")
+        case _ => sender() ! ActionExecuted(None, s"OrderID not found.")
       }
       span.finish()
 

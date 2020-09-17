@@ -68,7 +68,7 @@ trait OrderRoutes extends JsonProtocol with AkkaHttpTraceDirectives {
 
             onSuccess(orderCreated) { executedAction =>
               log.info("Submitted order ID [{}]: {}", order.id, executedAction.description)
-              complete((StatusCodes.Created, executedAction))
+              complete((StatusCodes.Created, executedAction.description))
             }
           }
         }
@@ -83,10 +83,10 @@ trait OrderRoutes extends JsonProtocol with AkkaHttpTraceDirectives {
           (orderRegistryActor ? CancelOrder(id.toInt,  TraceContext(tracer, span))).mapTo[ActionExecuted]
 
         onSuccess(cancelledOrder) { actionExecuted =>
-          if (actionExecuted.description.contains("cancelled"))
-            complete((StatusCodes.OK, actionExecuted))
-          else
-            complete((StatusCodes.NotFound, s" ${StatusCodes.NotFound.intValue} - Order not found!"))
+          actionExecuted.id match {
+            case Some(_) => complete((StatusCodes.OK, actionExecuted.description))
+            case None =>  complete((StatusCodes.NotFound, s" ${StatusCodes.NotFound.intValue} - Order not found!"))
+          }
         }
       }
     }
