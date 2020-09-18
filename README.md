@@ -1,4 +1,4 @@
-# [OpenTracing](https://opentracing.io/docs/overview/what-is-tracing/)
+
 
 ## Introduction
 
@@ -26,9 +26,5 @@ docker run \
 Jaeger GUI on localhost http://localhost:16686
 ```
 
- 
-## Inspired by 
-
-Akka HTTP trace directive was inspired from [AkkaHttp](https://gist.github.com/chadselph/65f21fc86f873d6569f4cfe4f96ce036)
 
 
