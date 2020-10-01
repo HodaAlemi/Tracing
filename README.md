@@ -3,7 +3,9 @@
 ## Introduction
 
 Distributed tracing is particularly well-suited for debugging and monitoring microservices. [Contributed libraries](https://github.com/opentracing-contrib?utf8=%E2%9C%93&q=scala&type=&language=) are available in different languages.
-This project has the implementation of tracing for a Rest API which is built on Akka-HTTP and Akka-Actors framework. The API has the functionality of registering orders.
+
+OrderRegistryAPI is a Rest API written in Scala, and is based on Akka Actor framework and Akka HTTP modules. This application has the simple functionality of registering orders and is meant to show how to implement tracing for Akka Actors and Akka HTTP.  
+
 
 ## Tracer
 A Tracer is the actual implementation that will record the Spans and publish them somewhere. 
@@ -26,5 +28,5 @@ docker run \
 Jaeger GUI on localhost http://localhost:16686
 ```
 
-
-
+## Running the application
+You can run the application through Intellij or with ``` sbt run ``` command. The application will be available at ```http://localhost:9001/```.
