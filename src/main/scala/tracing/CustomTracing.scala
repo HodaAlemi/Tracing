@@ -5,7 +5,7 @@ import io.opentracing.{Span, Tracer}
 
 case class TraceContext(tracer: Tracer, span: Span)
 
-object CustomeTracing {
+object CustomTracing {
 
   def buildChildSpan(traceContext: TraceContext, operationName: String, parentSpan: Span) = {
     traceContext.tracer.buildSpan(operationName)

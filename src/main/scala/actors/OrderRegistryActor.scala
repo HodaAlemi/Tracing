@@ -1,6 +1,6 @@
 package actors
 
-import tracing.CustomeTracing.buildChildSpan
+import tracing.CustomTracing.buildChildSpan
 import tracing.TraceContext
 import akka.actor.{Actor, ActorLogging, Props}
 import io.opentracing.{Span, Tracer}
